@@ -1,0 +1,33 @@
+{
+  "name": "chainlink",
+  "version": "1.0.0",
+  "description": "Reducing cost to maintenance proof on blockchain",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "keccak": "^3.0.1",
+    "prettier": "^2.2.1",
+    "prettier-plugin-solidity": "^1.0.0-beta.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "format": "prettier --write 'contracts/**/*.sol'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chiro-hiro/chainlink.git"
+  },
+  "keywords": [
+    "solidity",
+    "proof"
+  ],
+  "author": "Chiro Hiro <chiro8x@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chiro-hiro/chainlink/issues"
+  },
+  "homepage": "https://github.com/chiro-hiro/chainlink#readme"
+}
