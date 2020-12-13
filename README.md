@@ -2,10 +2,6 @@
 
 I've look on [MerkleTreeSHA256.sol](https://github.com/ethereum-oasis/baseline/blob/master/core/contracts/contracts/privacy/lib/MerkleTreeSHA256.sol). This one is an expensive smart contract to operate, so it motivated me to think in another direction.
 
-### Reference
-
-- [MerkleTreeSHA256.sol](https://github.com/ethereum-oasis/baseline/blob/master/core/contracts/contracts/privacy/lib/MerkleTreeSHA256.sol)
-
 ### Questions
 
 - If compute/verify proof off-chain cost less than compute it on-chain, why don't we make it easier for on-chain computation?
