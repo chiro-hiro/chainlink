@@ -1,5 +1,7 @@
 const TestChainLinkSha256 = artifacts.require("TestChainLinkSha256");
 const TestChainLinkKeccak256 = artifacts.require("TestChainLinkKeccak256");
+const TestMerkleTreeSHA256 = artifacts.require("TestMerkleTreeSHA256");
+
 const keccak = require("keccak");
 const assert = require("assert").strict;
 const crypto = require("crypto");
@@ -7,7 +9,7 @@ const crypto = require("crypto");
 var bufSha256 = [Buffer.alloc(32)];
 var bufKeccak256 = [Buffer.alloc(32)];
 
-var instanceChainLinkSha256, testChainLinkKeccak256;
+var instanceChainLinkSha256, instanceTestChainLinkKeccak256, instanceTestMerkleTreeSHA256;
 
 function sha256(...params) {
   const h = crypto.createHash("sha256");
@@ -53,9 +55,9 @@ contract("TestChainLinkSha256", async () => {
     assert.strictEqual(await instanceChainLinkSha256.chainRoot(), `0x${hashOfBufSha256(bufSha256).toString("hex")}`);
   });
 
-  it("Should able to append 10 digests", async () => {
+  it("Should able to append 15 digests", async () => {
     let tmp = [];
-    for (let i = 0; i < 10; i += 1) {
+    for (let i = 0; i < 15; i += 1) {
       let value = crypto.randomBytes(32);
       tmp.push(value);
     }
@@ -67,30 +69,52 @@ contract("TestChainLinkSha256", async () => {
 
 contract("TestChainLinkKeccak256", async () => {
   it("TestChainLinkKeccak256 should be deployed correctly", async () => {
-    testChainLinkKeccak256 = await TestChainLinkKeccak256.deployed();
+    instanceTestChainLinkKeccak256 = await TestChainLinkKeccak256.deployed();
   });
 
   it("Root should be calculated right", async () => {
     let value = crypto.randomBytes(32);
     bufKeccak256.push(value);
-    await testChainLinkKeccak256.appendOne(value);
+    await instanceTestChainLinkKeccak256.appendOne(value);
     assert.strictEqual(
-      await testChainLinkKeccak256.chainRoot(),
+      await instanceTestChainLinkKeccak256.chainRoot(),
       `0x${hashOfBufKeccak256(bufKeccak256).toString("hex")}`,
     );
   });
 
-  it("Should able to append 10 digests", async () => {
+  it("Should able to append 15 digests", async () => {
     let tmp = [];
-    for (let i = 0; i < 10; i += 1) {
+    for (let i = 0; i < 15; i += 1) {
       let value = crypto.randomBytes(32);
       tmp.push(value);
     }
     bufKeccak256 = [...bufKeccak256, ...tmp];
-    await testChainLinkKeccak256.appendMultiple(tmp);
+    await instanceTestChainLinkKeccak256.appendMultiple(tmp);
     assert.strictEqual(
-      await testChainLinkKeccak256.chainRoot(),
+      await instanceTestChainLinkKeccak256.chainRoot(),
       `0x${hashOfBufKeccak256(bufKeccak256).toString("hex")}`,
     );
   });
+});
+
+contract("TestChainLinkKeccak256", async () => {
+  it("TestChainLinkKeccak256 should be deployed correctly", async () => {
+    instanceTestMerkleTreeSHA256 = await TestMerkleTreeSHA256.deployed();
+  });
+/*
+  it("Root should be calculated right", async () => {
+    let value = crypto.randomBytes(32);
+    await instanceTestMerkleTreeSHA256.appendOne(value);
+  });*/
+
+
+  it("Should able to append 15 digests", async () => {
+    let tmp = [];
+    for (let i = 0; i < 15; i += 1) {
+      let value = crypto.randomBytes(32);
+      tmp.push(value);
+    }
+    await instanceTestMerkleTreeSHA256.appendMultiply(tmp);
+  });
+
 });

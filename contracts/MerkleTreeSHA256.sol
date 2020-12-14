@@ -8,7 +8,7 @@
  * credit: https://github.com/EYBlockchain/timber
  **/
 
-pragma solidity ^0.6.9;
+pragma solidity >=0.7.5 <0.8.0;
 
 contract MerkleTreeSHA256 {
     /**
@@ -67,7 +67,7 @@ contract MerkleTreeSHA256 {
     // the right-most 'frontier' of nodes required to calculate the new root when the next new leaf value is added.
     bytes27[33] public frontier;
 
-    constructor(uint256 _treeHeight) internal {
+    constructor(uint256 _treeHeight) {
         treeHeight = _treeHeight;
         treeWidth = 2**treeHeight;
     }
