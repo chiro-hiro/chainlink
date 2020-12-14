@@ -9,20 +9,21 @@ I've look on [MerkleTreeSHA256.sol](https://github.com/chiro-hiro/chainlink/blob
     - Apparently off-chain computation is munch more cheaper even for worser algorithm.
     - It's possible to reduce cost for on-chain computation by using simpler algorithm.
 
-2. What does it cost calculate/verify Merkle Tree
+2. **What does it cost calculate/verify Merkle Tree**
 
     - To calculate a Merkle tree with leaf is: `n` we need to calculate `O(n)` to verify it's `O(log⁡2(n))` but for *MerkleTreeSHA256* we are only store right-most 'frontier' then we had received no benefit.
 
-3. Is Merkle tree is the only way to archive that?.
+3. **Is Merkle tree is the only way to archive that?.**
 
     - No, we could use [Hash Chain](https://en.wikipedia.org/wiki/Hash_chain), it's even giving better result
 
 ### Proposal
 
-Assume that we have:
-- Hash function **H()**
-- Byte array concat operator **++**
-- Digests need to be used to construct proof: **A,B,C** (unsorted)
+**Denote that:**
+
+- **H(x)**: Hash function of `x`
+- **++**: Byte array concat operator
+- **A,B,C**: Digests need to be used to construct proof (unsorted)
 
 We have: `root := H(root, A)`
 
