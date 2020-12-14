@@ -23,13 +23,16 @@ I've look on [MerkleTreeSHA256.sol](https://github.com/chiro-hiro/chainlink/blob
 
 - **H(x)**: Hash function of `x`
 - **++**: Byte array concat operator
-- **A,B,C**: Digests need to be used to construct proof (unsorted)
+- **A, B, C**: Digests need to be used to construct proof (unsorted)
+- **root**: The first digest `0x0000000000000000000000000000000000000000000000000000000000000000`
 
-We have: `root := H(root, A)`
+Whe have:
 
-If `0x00...000` is the first root, we have:
+`root <- H(root ++ A) <- H(H(root ++ A) ++ B) <- H(H(H(root ++ A) ++ B) ++ C) ...`
 
-`0x00...00 <- H(0x00...00 ++ A) <- H(H(0x00...00 ++ A) ++ B) <- H(H(H(0x00...00 ++ A) ++ B) ++ C) ...`
+In short:
+
+`root := H(root ++ X)`
 
 ![Hash Chain](https://raw.githubusercontent.com/chiro-hiro/chainlink/main/content/hash-chain.jpg)
 
