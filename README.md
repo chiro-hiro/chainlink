@@ -21,7 +21,7 @@ I've look on [MerkleTreeSHA256.sol](https://github.com/chiro-hiro/chainlink/blob
 
 **Denote that:**
 
-- **H(x)**: Hash function of `x`
+- **H**: Hash function, denote `H(x)` is compute digest of `x` 
 - **++**: Byte array concat operator
 - **A, B, C**: Digests need to be used to construct proof (unsorted)
 - **root**: The first digest `0x0000000000000000000000000000000000000000000000000000000000000000`
