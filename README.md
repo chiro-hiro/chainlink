@@ -6,12 +6,13 @@ I've look on [MerkleTreeSHA256.sol](https://github.com/chiro-hiro/chainlink/blob
 
 1. **If compute/verify proof off-chain cost less than compute it on-chain, why don't we make computation easier for on-chain?**
 
-    - Apparently off-chain computation is munch more cheaper even for worser algorithm.
+    - Apparently off-chain computation is munch more cheaper even for worst algorithm.
     - It's possible to reduce cost for on-chain computation by using simpler algorithm.
 
 2. **What does it cost calculate/verify Merkle Tree**
 
-    - To calculate a Merkle tree with leaf is: `n` we need to calculate `O(n)` to verify it's `O(log⁡2(n))` but for *MerkleTreeSHA256* we are only store right-most 'frontier' then we had received no benefit.
+    - To calculate a Merkle tree with leaf is: `n` we need to calculate `O(n)` to verify it's `O(log⁡2(n))` but for **MerkleTreeSHA256** we are only store right-most 'frontier' then we had received no benefit.
+    - In **MerkleTreeSHA256**, the cost to insert a new leaf is `O(log2n)` (`n` is total leafs)
 
 3. **Is Merkle tree is the only way to archive that?.**
 
@@ -48,8 +49,11 @@ These created a immutable chain of digests that only allow us to append to the e
 
 ### Conclusion
 
-- What did it cost?
-- O(n)
+- What does it cost?
+- O(n) to verify
+- O(1) to insert a new leaf
+
+We could make it even more better with a Hash Chain for on-chain computation and hybrid of Hash Chain and Merkle Tree for off-chain computation (With the context we received from EVM, we could construct a Merkle Tree).
 
 # License
 
