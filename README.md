@@ -6,7 +6,7 @@ I've look on [MerkleTreeSHA256.sol](https://github.com/chiro-hiro/chainlink/blob
 
 1. **If compute/verify proof off-chain cost less than compute it on-chain, why don't we make computation easier for on-chain?**
 
-    - Apparently off-chain computation is munch more cheaper even for worst algorithm.
+    - Apparently off-chain computation is much more cheaper even for worst algorithm.
     - It's possible to reduce cost for on-chain computation by using simpler algorithm.
 
 2. **What does it cost calculate/verify Merkle Tree**
